@@ -18,4 +18,17 @@ class IndexController extends AbstractActionController
     {
         return new ViewModel();
     }
+    public function servicoAction()
+    {
+    	return new ViewModel();
+    }
+    public function contatoAction()
+    {
+    	return new ViewModel();
+    }
+     public function rotaAction()
+    {
+    	var_dump($_POST);
+    	die('ninguem precisa se jogar no chao');
+    }
 }

@@ -50,6 +50,45 @@ return array(
                     ),
                 ),
             ),
+/**
+*@see: cria uma rota para abrir arquivo que esteja nas regara do mesmo modulo mesma view mesmo pacote.
+*Possibilitando abrir por um outro metodo da mesma controladora.
+*
+**/
+           'application' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/servico',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Index',
+                        'action'        => 'servico',
+                    ),
+                ),
+            ),
+             'contato' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/contato',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Index',
+                        'action'        => 'contato',
+                    ),
+                ),
+            ),
+            'rota' => array(
+            'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/rota',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Index',
+                        'action'        => 'rota',
+                    ),
+                ),
+            ),
+
         ),
     ),
     'service_manager' => array(
