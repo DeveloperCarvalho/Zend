@@ -44,6 +44,7 @@
                         <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
                         <li class=""><a href="<?php echo $this->url('home').'servico'; ?>"><?php echo $this->translate('Serviço') ?></a></li>
                           <li class=""><a href="<?php echo $this->url('contato'); ?>"><?php echo $this->translate('Contato') ?></a></li>
+                           <li class=""><a href="<?php echo $this->url('logar'); ?>"><?php echo $this->translate('Logar') ?></a></li>
 
                     </ul>
                 </div><!--/.nav-collapse -->
@@ -53,7 +54,7 @@
             <?php echo $this->content; ?>
             <hr>
             <footer>
-                <p>&copy; 2005 - <?php echo date('Y') ?> by Zend Technologies Ltd. <?php echo $this->translate('All rights reserved.') ?></p>
+                <p>&copy; 2005 - <?php echo date('Y') ?>  <?php echo $this->translate('Meu primeiro Zend.') ?></p>
             </footer>
         </div> <!-- /container -->
         <?php echo $this->inlineScript() ?>

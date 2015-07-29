@@ -20,6 +20,16 @@ return array(
                     ),
                 ),
             ),
+               'perfil' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/perfil',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Usuario',
+                        'action'     => 'perfil',
+                    ),
+                ),
+            ),
             // The following is a route to simplify getting started creating
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
@@ -77,17 +87,29 @@ return array(
                     ),
                 ),
             ),
-            'rota' => array(
-            'type'    => 'Literal',
+              'logar' => array(
+                'type'    => 'Literal',
                 'options' => array(
-                    'route'    => '/rota',
+                    'route'    => '/logar',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Application\Controller',
                         'controller'    => 'Index',
-                        'action'        => 'rota',
+                        'action'        => 'logar',
                     ),
                 ),
             ),
+              'registro' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/registro',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Index',
+                        'action'        => 'registro',
+                    ),
+                ),
+            )
+            
 
         ),
     ),
@@ -112,7 +134,8 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Index' => 'Application\Controller\IndexController'
+            'Application\Controller\Index' => 'Application\Controller\IndexController',
+            'Application\Controller\Usuario' => 'Application\Controller\UsuarioController'
         ),
     ),
     'view_manager' => array(
