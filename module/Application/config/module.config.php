@@ -108,7 +108,19 @@ return array(
                         'action'        => 'registro',
                     ),
                 ),
+            ),
+                'dicionario' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/dicionario',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Usuario',
+                        'action'        => 'dicionario',
+                    ),
+                ),
             )
+
             
 
         ),

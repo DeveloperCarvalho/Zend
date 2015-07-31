@@ -12,6 +12,13 @@ namespace Application\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
+//import Zend\Db
+use Zend\Db\Adapter\Adapter as Adaptador,
+    Zend\Db\Sql\Sql;
+
+// import ModelContatoTable com Alias
+use Application\Model\UsuarioTable as ModelUsuario;
+
 class IndexController extends AbstractActionController
 {
     public function __construct()
@@ -68,33 +75,34 @@ class IndexController extends AbstractActionController
     *senha = md5(65432211), caso seja aparece na tela login correto;
     *caso nao aparece login ou senha invalidos
     **/
+
     public function logarAction()
     {
-      try{
-        if(isset($_POST) && !empty($_POST))
-        {
-           if($_POST['username'] == 'root' &&md5($_POST['password']) == md5('123'))
-           {
-
-             $_SESSION['user'] = $_POST['username'];
-             $_SESSION['timer'] = date('Y/m/d');
-
-              return $this->redirect()->toRoute('perfil');
-           }else{
-
-              $this->data['retorno'] = 'login ou senha invalidos';
-           }
-
+        try {
+            if(isset($_POST) && !empty($_POST))
+            {
+                $Adapter = $this->getServiceLocator()->get('AdapterDb');
+                $ModelUsuario = new ModelUsuario($Adapter); //alias para contatoTable
+                $user = $ModelUsuario ->findUser($_POST);
+                if($user){
+                    if($user->status){
+                      
+                         $_SESSION['user'] = $_POST['username'];
+                        $_SESSION['timer'] = date('Y/m/d');
+                        return $this->redirect()->toRoute('perfil');
+                    }else{
+                        $this->data['class']='warning';
+                        $this->data['msg']='Login errado';
+                    }
+                }else{
+                    $this->data['class'] = 'danger';
+                    $this->data['msg'] = 'Login ou senha inativo';
+                }
+            }
+        } catch (Exception $e) {
+            die($e->getMessage());
         }
-      }catch(Exception $e){
-        die ($e->getMessage());
-        
-      }
-      return new ViewModel($this->data);
+        return new ViewModel($this->data);
     }
-    public function registroAction()
-    {
-        return new ViewModel();
-    }
-    
-}
+
+  }

@@ -11,50 +11,43 @@ namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Zend\Form\Form;
 
+//import Zend\Db
+use Zend\DbAdapter\Adapter as Adaptador,
+    Zend\Db\Sql\Sql;
 
-
+//import ModelContatoable com alias
+use Application\Model\UsuarioTable as ModelUsuario;
 
 class UsuarioController extends AbstractActionController
 {
 
 	public function __construct()
-    {
-    	SESSION_START();
-      if(!isset($_SESSION['user']) || empty($_SESSION['user']))
-      {
-      	header('location:'.$_SERVER['HTTP_REFERER'].'logar');
-      	die('###########');
-      	//return $this->redirect()->toRoute('logar');
-      }
-      $this->data = null;
-  }
+	{
+		SESSION_START();
+		if(!isset($_SESSION['user']) || empty($_SESSION['user']))
+		{
+			HEADER('LOCATION:'.$_SERVER['HTTP_REFERER'].'login');
+			die('#############');
+			//return $this->redirect()->toRouter('logar');
+		}
+		$this->data = null;
+	}
 
-    public function perfilAction()
-    {
-      return new ViewModel();
-  	}
+	public function perfilAction()
+	{
+		return new ViewModel();
+	}
+	public function dicionarioAction()
+	{
+		return new ViewModel();
+	}
+	/**
+	*@see: Verifica se o tempo salvo na sessao jã não pasosu os 15 minutos do timeout
+	**/
 
-  	/**
-  	*@see: verifica se o tempo salvo na sessao ja nao passou os 15 minutos de timeout
-  	*
-  	**/
+	 private function verif_time_out(){
 
-  	private function verif_time_out()
-  	{
-
-  		try{
-
-  			if(isset($_SESSION['timer']) )
-  			{
-  				$diferenca = date('Y/m/d') - $_SESSION['timer'];
-  				return;
-  			}
-  			$this->data['class'] = 'warning';
-  			$this->data['retorno'] = 'Sua sessao expirou, faça login novamente';
-  			return $this->data;
-  		}catch(Exception $e){
-  			die($e->getMessage());
-  		}
-  	}
-  }
+	}
+}

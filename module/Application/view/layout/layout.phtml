@@ -15,10 +15,15 @@
                         ->prependStylesheet($this->basePath('css/style.css'))
                          ->prependStylesheet($this->basePath('css/estilo.css'))
                         ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
+                        ->prependStylesheet($this->basePath('media/css/jquery.dataTables.min.css'))
                         ->prependStylesheet($this->basePath('css/bootstrap.min.css')) ?>
 
         <!-- Scripts -->
         <?php echo $this->headScript()
+            ->prependFile($this->basePath('js/function.js'))
+            ->prependFile($this->basePath('media/js/jquery.dataTables.min.js'))
+            ->prependFile($this->basePath('resources/demo.js'))
+            ->prependFile($this->basePath('resources/syntax/shCore.js'))
             ->prependFile($this->basePath('js/bootstrap.min.js'))
             ->prependFile($this->basePath('js/js.js'))
             ->prependFile($this->basePath('js/jquery.min.js'))
@@ -45,6 +50,7 @@
                         <li class=""><a href="<?php echo $this->url('home').'servico'; ?>"><?php echo $this->translate('Serviço') ?></a></li>
                           <li class=""><a href="<?php echo $this->url('contato'); ?>"><?php echo $this->translate('Contato') ?></a></li>
                            <li class=""><a href="<?php echo $this->url('logar'); ?>"><?php echo $this->translate('Logar') ?></a></li>
+
 
                     </ul>
                 </div><!--/.nav-collapse -->
