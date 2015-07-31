@@ -18,7 +18,7 @@ use Zend\DbAdapter\Adapter as Adaptador,
     Zend\Db\Sql\Sql;
 
 //import ModelContatoable com alias
-use Application\Model\UsuarioTable as ModelUsuario;
+use Application\Model\Diconario as ModelDiconario;
 
 class UsuarioController extends AbstractActionController
 {
@@ -40,6 +40,10 @@ class UsuarioController extends AbstractActionController
 		return new ViewModel();
 	}
 	public function dicionarioAction()
+
+	        $Adapter = $this->getServiceLocator()->get('AdapterDb');
+            $ModelDiconario = new ModelDiconario($Adapter); //alias para contatoTable
+            $user = $ModelDicionario->findall();
 	{
 		return new ViewModel();
 	}

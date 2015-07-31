@@ -33,5 +33,5 @@ Class Pagamento{
 		$this->$dt_pedido = (!empty($data['$dt_pedido'])) ? $data['$dt_pedido'] : null;
 		$this->$status = (!empty($data['$status'])) ? $data['$status'] : null;
 	}
-	}
+	
 }
