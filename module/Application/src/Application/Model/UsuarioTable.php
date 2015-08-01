@@ -61,4 +61,32 @@ class UsuarioTable
             throw new Exception("Error Processing Request #401");
         }
     }
+     public function save($data)
+    {
+        try{
+    
+
+        $data = array(
+
+            'nome' => $data['username'],
+            'login'    => $data['email'],
+            'senha' => md5($data['password']),
+            'status'   => 1,
+        );
+    
+        return $this->tableGateway->insert($data);
+    }catch(Exception $e){
+
+        throw new Exception($e->getMessage());
+    }
+     
+      
+        //try {
+           // $rowset = $this->tableGateway->select(array('login' => $data['username'], 'senha' => md5($data['password'])));
+           // $row = $rowset->current();
+           // return $row;
+       // } catch (Exception $e) {
+           // throw new Exception("Error Processing Request #401");
+        //}
+    }
 }

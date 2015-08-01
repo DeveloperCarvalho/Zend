@@ -16,22 +16,18 @@ use Zend\Form\Form;
 //import Zend\Db
 use Zend\DbAdapter\Adapter as Adaptador,
     Zend\Db\Sql\Sql;
+// import ModelContatoTable com Alias
+use Application\Model\UsuarioTable as ModelUsuario;
 
 //import ModelContatoable com alias
-use Application\Model\Diconario as ModelDiconario;
+use Application\Model\Pagamento as ModelPagamento;
 
 class UsuarioController extends AbstractActionController
 {
 
 	public function __construct()
 	{
-		SESSION_START();
-		if(!isset($_SESSION['user']) || empty($_SESSION['user']))
-		{
-			HEADER('LOCATION:'.$_SERVER['HTTP_REFERER'].'login');
-			die('#############');
-			//return $this->redirect()->toRouter('logar');
-		}
+		
 		$this->data = null;
 	}
 
@@ -40,18 +36,54 @@ class UsuarioController extends AbstractActionController
 		return new ViewModel();
 	}
 	public function dicionarioAction()
-
-	        $Adapter = $this->getServiceLocator()->get('AdapterDb');
-            $ModelDiconario = new ModelDiconario($Adapter); //alias para contatoTable
-            $user = $ModelDicionario->findall();
+	{
+		try{
+			$this->adapter = $this->getServiceLocator()->get('AdapterDb');
+            $ModelPagamento = new ModelPagamento($this->adapter); //alias para contatoTable
+            $user = $ModelPagamento->findall();
+        }catch(Expection $e){
+        die($e->getMessage());
+    }
 	{
 		return new ViewModel();
 	}
-	/**
-	*@see: Verifica se o tempo salvo na sessao jã não pasosu os 15 minutos do timeout
-	**/
 
-	 private function verif_time_out(){
+ }
+	public function registroAction()
+	{
+		try{
+			if(!empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['password']))
+			{
+				if($_POST['password'] == $_POST['password']){
+
+					$this->adapter = $this->getServiceLocator()->get('AdapterDb');
+					$ModelUsuario = new ModelUsuario($this->adapter); //alias para contatoTable
+					$user = $ModelUsuario ->save($_POST);
+            		if($user){
+
+            		}
+
+				}else{
+					$this->data['class'] = 'danger';
+					$this->data['msg'] = 'Senha de confirmacao nao condiz';
+				}
+			}else{
+				$this->data['class'] = 'danger';
+				$this->data['msg'] = 'Favor preencher todos os campos';
+			}
+		}catch(Exepction $e){
+			die($e->getMessage());
+		}
+		//var_dump($this->data);
+		//die('file');
+		//die('chegou');
+		$this->data['flag'] = 'registro';
+
+		$view = new ViewModel($this->data);
+		$view->setTemplate('application/index/logar.phtml');//path to phtml file under view
+		return $view;
+		//return new ViewModel();
 
 	}
-}
+
+ }

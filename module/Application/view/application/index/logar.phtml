@@ -1,4 +1,5 @@
 <div class="container">
+<?php $flag = isset($flag)?$flag:null;?>
 
 <?php if(isset($retorno)):?>
 <div class="alert alert-<?php echo $retorno?>">
@@ -23,7 +24,23 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form id="login-form" action="" method="post" role="form" style="display: block;">
+								<form id="login-form" action="" method="post" role="form" style="<?php echo $flag == 'registro'?'display:none;':'display:block';?>">
+
+
+								<?php
+								/**
+								*@see:Constroi o display da msg de retorno a tentativa de acesso
+								*@reference: http//bootsnipp.com/snippets/featuder/a-different-approach-to-bootstrap-alert
+								*/
+								if(isset($msg) && !empty($msg)) : ?>
+								<div class="error-notice">
+								<div class="error<?php echo $class;?>">
+								<strong>error</strong> - <?php echo $msg; ?>
+								</div>
+								</div>
+								
+							<?php endif; ?>
+
 									<div class="form-group">
 										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Usuario" value="">
 									</div>
@@ -48,7 +65,20 @@
 										</div>
 									</div>
 								</form>
-									<form id="register-form" action="" method="post" role="form" style="display: none;">
+									<form id="register-form" action="<?php echo $this->url('registro'); ?>" method="post" role="form" style="<?php echo $flag == 'registro'?'display:block;':'display:none';?>">
+								<?php
+								/**
+								*@see:Constroi o display da msg de retorno a tentativa de acesso
+								*@reference: http//bootsnipp.com/snippets/featuder/a-different-approach-to-bootstrap-alert
+								*/
+								if(isset($msg) && !empty($msg)) : ?>
+								<div class="error-notice">
+								<div class="error<?php echo $class;?>">
+								<strong>error</strong> - <?php echo $msg; ?>
+								</div>
+								</div>
+								
+							<?php endif; ?>
 									<div class="form-group">
 										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Usuario" value="">
 									</div>
@@ -64,7 +94,7 @@
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Registrar">
+												<input type="submit" name="registrar" id="registrar" tabindex="4" class="form-control btn btn-register" value="Registrar">
 											</div>
 										</div>
 									</div>

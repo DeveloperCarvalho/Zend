@@ -104,7 +104,7 @@ return array(
                     'route'    => '/registro',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Application\Controller',
-                        'controller'    => 'Index',
+                        'controller'    => 'Usuario',
                         'action'        => 'registro',
                     ),
                 ),
