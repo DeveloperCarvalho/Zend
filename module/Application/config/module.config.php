@@ -109,7 +109,7 @@ return array(
                     ),
                 ),
             ),
-                'dicionario' => array(
+            'dicionario' => array(
                 'type'    => 'Literal',
                 'options' => array(
                     'route'    => '/dicionario',
@@ -119,10 +119,18 @@ return array(
                         'action'        => 'dicionario',
                     ),
                 ),
-            )
-
-            
-
+            ),
+            'agenda' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/agenda',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Agenda',
+                        'action'        => 'index',
+                    ),
+                ),
+            ),
         ),
     ),
     'service_manager' => array(
@@ -147,7 +155,8 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
-            'Application\Controller\Usuario' => 'Application\Controller\UsuarioController'
+            'Application\Controller\Usuario' => 'Application\Controller\UsuarioController',
+            'Application\Controller\Agenda' => 'Application\Controller\AgendaController'
         ),
     ),
     'view_manager' => array(

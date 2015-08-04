@@ -42,22 +42,4 @@ class PagamentoTable
  
         return $row;
     }
-
-    /**
-     * @see Localizar linha especifico pelo id da tabela usuario
-     * 
-     * @param type $data
-     * @return ModelUsuario
-     * @throws Exception
-     */
-    //public function findUser($data)
-   // {
-        //try {
-           // $rowset = $this->tableGateway->select(array('login' => $data['username'], 'senha' => md5($data['password'])));
-           // $row = $rowset->current();
-            //return $row;
-        //} catch (Exception $e) {
-           // throw new Exception("Error Processing Request #401");
-        //}
-   // }
 }

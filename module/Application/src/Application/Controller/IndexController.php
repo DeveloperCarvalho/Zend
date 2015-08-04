@@ -84,7 +84,9 @@ class IndexController extends AbstractActionController
                 $Adapter = $this->getServiceLocator()->get('AdapterDb');
                 $ModelUsuario = new ModelUsuario($Adapter); //alias para contatoTable
                 $user = $ModelUsuario ->findUser($_POST);
+                die('4546');
                 if($user){
+                    die('4546');
                     if($user->status){
                       
                          $_SESSION['user'] = $_POST['username'];
